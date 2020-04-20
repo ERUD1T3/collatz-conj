@@ -1,6 +1,7 @@
 // test file to execute the collatz conjecture on 1 proc
 #include <stdio.h>
 #include <stdlib.h>
+#include <omp.h>
 
 typedef unsigned long long ullong;
 
@@ -12,9 +13,18 @@ int main(int argc, char** argv) {
         nmax = (argc > 1) ? atoi(argv[1]) : 50,
         imax = 1000; // max number of iteration for a seed n 
     
+    #pragma omp parallel                   
+    {
+        printf("worker %d/%d ready to roll\n", omp_get_thread_num(), omp_get_num_threads());
+    }  
+
+    /* timers */
+    double startTime = omp_get_wtime(),
+         endTime;
 
     high = 0; // starting with n itself as highest
-
+    // #pragma omp parallel for private(high) schedule(static)
+    #pragma omp parallel for schedule(static) reduction(max:high)
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
         printf("n: %lld", n);
@@ -35,6 +45,8 @@ int main(int argc, char** argv) {
     }
 
     printf("\nHigh: %lld\n", high);
+    endTime = omp_get_wtime();
+    printf("\nruntime = %.16e\n", endTime - startTime);
 
 
 
