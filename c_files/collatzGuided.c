@@ -14,6 +14,11 @@ int main(int argc, char** argv) {
         imax = 2000000; // max number of iteration for a seed n 
     
 
+    #pragma omp parallel                   
+    {
+        printf("worker %d/%d ready to roll\n", omp_get_thread_num(), omp_get_num_threads());
+    }  
+
     high = 0; // starting with n itself as highest
 
     /* timers */
