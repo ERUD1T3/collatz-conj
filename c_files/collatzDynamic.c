@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     ullong n, // track current n
         high, // highest number recorded
         nmax = (argc > 1) ? atoi(argv[1]) : 50,
-        imax = 1000; // max number of iteration for a seed n 
+        imax = 2000000; // max number of iteration for a seed n 
     
     // #pragma omp parallel                   
     // {
