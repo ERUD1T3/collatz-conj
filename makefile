@@ -16,7 +16,7 @@ runtest: test
 	./bin/cc
 
 runcStatic:
-	./bin/ccs
+	./bin/ccs 2000
 
 runcDynamic:
 	./bin/ccd

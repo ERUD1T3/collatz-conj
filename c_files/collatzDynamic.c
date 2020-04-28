@@ -13,10 +13,10 @@ int main(int argc, char** argv) {
         nmax = (argc > 1) ? atoi(argv[1]) : 50,
         imax = 1000; // max number of iteration for a seed n 
     
-    #pragma omp parallel                   
-    {
-        printf("worker %d/%d ready to roll\n", omp_get_thread_num(), omp_get_num_threads());
-    }  
+    // #pragma omp parallel                   
+    // {
+    //     printf("worker %d/%d ready to roll\n", omp_get_thread_num(), omp_get_num_threads());
+    // }  
 
 
 
@@ -31,7 +31,7 @@ int main(int argc, char** argv) {
     #pragma omp parallel for schedule(dynamic) reduction(max:high)
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
-        printf("n: %lld", n);
+        // printf("n: %lld", n);
 
         for(ullong i = 1; i <= imax; ++i) {
 
@@ -39,13 +39,13 @@ int main(int argc, char** argv) {
 
             if(n > high) high = n;
 
-            if(i < 10) printf(",%lld",n);
+            // if(i < 10) printf(",%lld",n);
             
 
             if( n == 1 ) break; // stop if reach 1
 
         }
-        printf("\n");
+        // printf("\n");
     }
 
     printf("\nHigh: %lld\n", high);
