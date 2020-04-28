@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 
     high = 0; // starting with n itself as highest
     // #pragma omp parallel for private(high) schedule(static)
-    #pragma omp parallel for schedule(static) private(high) reduction(max:high)
+    #pragma omp parallel for schedule(static) reduction(max:high)
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
         // printf("n: %lld", n);
