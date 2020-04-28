@@ -1,7 +1,7 @@
 all: cstatic cdynamic cguided 
 
 test: 
-	gcc -ggdb -o ./bin/cc ./c_files/collatz.c
+	gcc -ggdb -fopenmp -o ./bin/cc ./c_files/collatz.c
 
 cstatic: 
 	gcc -fopenmp -o ./bin/ccs ./c_files/collatzStatic.c

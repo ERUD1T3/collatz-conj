@@ -1,6 +1,7 @@
 // test file to execute the collatz conjecture on 1 proc
 #include <stdio.h>
 #include <stdlib.h>
+#include <omp.h>
 
 typedef unsigned long long ullong;
 
@@ -14,6 +15,10 @@ int main(int argc, char** argv) {
     
 
     high = 0; // starting with n itself as highest
+
+    /* timers */
+    double startTime = omp_get_wtime(),
+         endTime;
 
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
@@ -35,6 +40,8 @@ int main(int argc, char** argv) {
     }
 
     printf("\nHigh: %lld\n", high);
+    endTime = omp_get_wtime();
+    printf("\nruntime = %.16e\n", endTime - startTime);
 
 
 
