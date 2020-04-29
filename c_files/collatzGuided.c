@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
          endTime;
 
     // #pragma omp parallel for private(high) schedule(guided) reduction(max:high)
-    #pragma omp parallel for schedule(guided) reduction(max:high)
+    #pragma omp parallel for schedule(guided, 50) reduction(max:high)
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
         // printf("n: %lld", n);

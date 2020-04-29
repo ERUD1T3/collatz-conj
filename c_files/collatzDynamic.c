@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
          endTime;
 
     // #pragma omp parallel for private(high) schedule(dynamic)
-    #pragma omp parallel for schedule(dynamic) reduction(max:high)
+    #pragma omp parallel for schedule(dynamic, 50) reduction(max:high)
     for(ullong j = 1; j <= nmax; ++j) {
         n = j;
         // printf("n: %lld", n);
